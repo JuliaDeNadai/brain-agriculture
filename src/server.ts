@@ -1,12 +1,11 @@
 import express from 'express';
+import { endpoints } from './endpoints';
 
 const app = express();
 
 const port = 3000;
 
-app.get('/healthcheck', (req, res) => {
-  res.send('ok');
-});
+app.use('/api', endpoints)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

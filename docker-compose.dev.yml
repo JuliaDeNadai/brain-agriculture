@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: .
+      target: build
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run dev
+  
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=brain-agriculture
+    volumes:
+      - brain_agriculture_pg_data:/bitnami/postgresql'
+
+volumes:
+  brain_agriculture_pg_data:
