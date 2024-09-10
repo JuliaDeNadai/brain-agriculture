@@ -1,22 +1,77 @@
-import express from 'express';
+import express, {Request, Response} from 'express';
 import { RuralProducerController } from '../controllers/ruralProducerController';
+import { IRuralProducerCreate, IRuralProducerGet } from '../models/ruralProducer';
+import { ruralProducerMiddleware } from '../middlewares/ruralProducerMiddleware';
+import { validationResult } from 'express-validator';
 
 const ruralProducerEnpoint = express.Router()
 
+const controller = new RuralProducerController()
+
 ruralProducerEnpoint.route('/')
-    .post((req: express.Request, res: express.Response) => {
+    .post(ruralProducerMiddleware(), async (request: Request, response: Response) =>  {
+        const errors = validationResult(request)
+        if (!errors.isEmpty()) 
+            return response.status(400).json({ errors: errors.array() });
+        
+        const {
+            cpf_cpnj,
+            producerName,
+            farmName,
+            city,
+            state,
+            totalArea,
+            arableArea,
+            vegetableArea,
+            plantedCrops
+        } = request.body as IRuralProducerCreate
 
-        console.log(req.body)
-        let controller = new RuralProducerController()
 
-        try{
-            let producer = controller.create(req.body)
-            res.send(producer);
+        let producer: IRuralProducerGet | null = await controller.create({
+            cpf_cpnj,
+            producerName,
+            farmName,
+            city,
+            state,
+            totalArea,
+            arableArea,
+            vegetableArea,
+            plantedCrops
+        })
 
-        }
-        catch(err){
-            res.send('error');
-        }
-    });
+        if(producer === null) return response.sendStatus(500)
+            
+        response.status(201).json(producer);
+        
+    })
+    .get(async (request: Request, response: Response) =>  {
+
+        let producers = await controller.getAll()
+        response.status(200).json(producers);
+
+    })
+ 
+
+ruralProducerEnpoint.route('/:cpf_cnpj')
+    .get(async (request: Request, response: Response) => {
+        let {cpf_cnpj} = request.params
+        
+        let producer = await controller.get(cpf_cnpj)
+        
+        if(producer === null) return response.sendStatus(404)
+        
+        response.status(200).json(producer);
+    })
+    .delete(async (request: Request, response: Response) => {
+        let {cpf_cnpj} = request.params
+        
+        let result = await controller.delete(cpf_cnpj)
+
+        if(result) return response.sendStatus(204);
+
+        response.sendStatus(404);
+        
+    })
+
 
 export {ruralProducerEnpoint}
