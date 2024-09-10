@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --poll ./src/server.ts",
     "start": "npm run docs && npm run build && node dist/server.js",
     "build": "rimraf ./dist && tsc",
-    "test": "jest --watch",
+    "test": "jest",
     "docs": "ts-node ./swagger.ts",
     "cov": "jest --coverage"
   },
