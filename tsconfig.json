@@ -14,6 +14,11 @@
       "@Repositories/*": ["src/repositories/*"],
       "@Models/*": ["src/models/*"],
       "@Endpoints/*": ["src/endpoints/*"]
-    }
-  }
+    },
+    "resolveJsonModule": true,
+  },
+  "include": ["./swagger-output.json", "src/**/*"],
+  "exclude": [
+    "node_modules"
+  ],
 }

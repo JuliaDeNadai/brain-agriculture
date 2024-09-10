@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --poll ./src/server.ts",
-    "start": "npm run build && node dist/server.js",
+    "start": "npm run docs && npm run build && node dist/server.js",
     "build": "rimraf ./dist && tsc",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "docs": "ts-node ./swagger.ts",
+    "cov": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -26,9 +28,13 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@types/swagger-ui-express": "^4.1.6",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.2.0",
-    "pg": "^8.12.0"
+    "pg": "^8.12.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2"
   }
 }

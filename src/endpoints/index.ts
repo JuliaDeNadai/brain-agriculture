@@ -5,8 +5,8 @@ import { dashboardEnpoint } from './dashboard';
 
 const endpoints = express.Router()
 
-endpoints.use('/healthcheck', healthCheckEnpoint)
-endpoints.use('/ruralProducer', ruralProducerEnpoint)
-endpoints.use('/dashboard', dashboardEnpoint)
+endpoints.use('/api/healthcheck', healthCheckEnpoint)
+endpoints.use('/api/ruralProducer', ruralProducerEnpoint)
+endpoints.use('/api/dashboard', dashboardEnpoint)
 
 export {endpoints};
