@@ -1,11 +1,10 @@
+import 'express-async-errors';
 import express from 'express';
 import { endpoints } from './endpoints';
-
-const app = express();
+import { errorMiddleware } from './middlewares/errorMiddleware';
+import { app } from './api/api';
 
 const port = 3000;
-
-app.use('/api', endpoints)
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

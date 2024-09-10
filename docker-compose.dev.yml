@@ -7,9 +7,13 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+    depends_on:
+      - postgres
     ports:
       - 3000:3000
     command: npm run dev
+    env_file:
+      - .env
   
   postgres:
     image: postgres
@@ -18,9 +22,9 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=brain-agriculture
+      - POSTGRES_DB=brain_agriculture
     volumes:
-      - brain_agriculture_pg_data:/bitnami/postgresql'
+      - brain_agriculture_pg_data:/postgres'
 
 volumes:
   brain_agriculture_pg_data:
