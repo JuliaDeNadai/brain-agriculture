@@ -21,7 +21,7 @@ Sistema simples manipulação de dados de produtores rurais.
 ✔️ Documentação com OpenAPI (swagger) na rota /api-docs
 ✔️ Conteinerização com Docker  
 ✔️ Testes unitários com Jest  
-✔️ Esteira de CI realizando testes automatizados
+✔️ Esteira de CI realizando testes automatizados    
 ⚠️ Esteira de deploy automático para uma função lambda na AWS (implementado parcialmente, esteira funcionando)
 
 ### Melhorias futuras 
