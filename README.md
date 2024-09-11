@@ -12,23 +12,23 @@ Sistema simples manipulação de dados de produtores rurais.
 ![alt text](database.png)
 
 ### Features:  
-✔️ Rota para cadastrar produtores rurais    
-✔️ Rota para excluir produtores rurais    
-✔️ Rota para listar dados de um produtor rural    
-✔️ Rota para listar dados para um dashboard
+✔️ Rota para cadastrar produtores rurais <br/> 
+✔️ Rota para excluir produtores rurais <br/> 
+✔️ Rota para listar dados de um produtor rural <br/> 
+✔️ Rota para listar dados para um dashboard <br/> 
 
 ### Recursos técnicos:  
-✔️ Documentação com OpenAPI (swagger) na rota /api-docs
-✔️ Conteinerização com Docker  
-✔️ Testes unitários com Jest  
-✔️ Esteira de CI realizando testes automatizados    
+✔️ Documentação com OpenAPI (swagger) na rota /api-docs  <br/> 
+✔️ Conteinerização com Docker <br/> 
+✔️ Testes unitários com Jest <br/> 
+✔️ Esteira de CI realizando testes automatizados <br/> 
 ⚠️ Esteira de deploy automático para uma função lambda na AWS (implementado parcialmente, esteira funcionando)
 
 ### Melhorias futuras 
-📌 Realizar migrations de forma automática ao rodar o docker  
-📌 Deploy do banco de dados na nuvem  
-📌 Aumentar coverage de testes unitários  
-📌 Adicionar paginação
+📌 Realizar migrations de forma automática ao rodar o docker <br/> 
+📌 Deploy do banco de dados na nuvem <br/> 
+📌 Aumentar coverage de testes unitários <br/> 
+📌 Adicionar paginação <br/> 
 
 ## 💻 Pré Requisitos
 
