@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --poll ./src/server.ts",
     "start": "npm run docs && npm run build && node dist/server.js",
-    "build": "rimraf ./dist && tsc",
+    "build": "npm run docs && rimraf ./dist && tsc",
     "test": "jest",
     "docs": "ts-node ./swagger.ts",
     "cov": "jest --coverage",

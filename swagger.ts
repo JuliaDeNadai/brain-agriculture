@@ -7,9 +7,13 @@ const doc = {
     },
     servers: [
         {
-            url: 'http://localhost:3000',
-            description: ''
+            url: 'https://trmbsykipiai4zg4plt4stqqf40igqlx.lambda-url.sa-east-1.on.aws',
+            description: 'Production'
         },
+        {
+            url: 'http://localhost:3000',
+            description: 'local'
+        }
     ],
     components: {
         securitySchemes: {
