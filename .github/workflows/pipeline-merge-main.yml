@@ -21,7 +21,7 @@ jobs:
       - name: Zip Files
         run: |
           cd dist
-          zip -r ../deployment.zip . ../node_modules ../package.json ../package-lock.json
+          zip -r ../deployment.zip . node_modules package.json package-lock.json
       - name: Send to Lambda
         uses: appleboy/lambda-action@v0.1.9
         with:
