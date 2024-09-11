@@ -7,6 +7,9 @@
 
 Sistema simples manipulação de dados de produtores rurais.
 
+Disponível para acesso em uma lambda function em: [Lambda Function /healthcheck](https://trmbsykipiai4zg4plt4stqqf40igqlx.lambda-url.sa-east-1.on.aws/api/healthcheck) <br>
+
+
 ### Modelagem do Banco de Dados
 
 ![alt text](database.png)
@@ -18,11 +21,11 @@ Sistema simples manipulação de dados de produtores rurais.
 ✔️ Rota para listar dados para um dashboard <br/> 
 
 ### Recursos técnicos:  
-✔️ Documentação com OpenAPI (swagger) na rota /api-docs  <br/> 
+✔️ Documentação com OpenAPI (swagger) na rota [/api-docs](https://trmbsykipiai4zg4plt4stqqf40igqlx.lambda-url.sa-east-1.on.aws/api-docs/)  <br/> 
 ✔️ Conteinerização com Docker <br/> 
 ✔️ Testes unitários com Jest <br/> 
 ✔️ Esteira de CI realizando testes automatizados <br/> 
-⚠️ Esteira de deploy automático para uma função lambda na AWS (implementado parcialmente, esteira funcionando)
+✔️ Esteira de deploy automático para uma função lambda na AWS
 
 ### Melhorias futuras 
 📌 Realizar migrations de forma automática ao rodar o docker <br/> 
