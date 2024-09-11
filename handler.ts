@@ -1,7 +1,7 @@
 import { Context, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { createServer, proxy } from 'aws-serverless-express';
 
-import {app} from "./api/api"
+import {app} from "./src/api/api"
 
 const server = createServer(app);
 
