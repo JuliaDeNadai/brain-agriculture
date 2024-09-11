@@ -2,11 +2,14 @@
 
 ![Static Badge](https://img.shields.io/badge/coverage-30-yellow?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/Node-16.20.2-yellow?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/production-offline-red?style=for-the-badge)
 
 ## 📋 Descrição
 
 Sistema simples manipulação de dados de produtores rurais.
+
+A API está rodando em uma Função lambda na AWS acessível via [url lambda function](https://fpfqilbrpokhz2rlhhvvzrxwme0udhsi.lambda-url.sa-east-1.on.aws/) 
+
+A documentação com swagger está disponível em: [Documentação com Swagger](https://fpfqilbrpokhz2rlhhvvzrxwme0udhsi.lambda-url.sa-east-1.on.aws/api-docs)
 
 ### Modelagem do Banco de Dados
 
@@ -19,8 +22,8 @@ Sistema simples manipulação de dados de produtores rurais.
 ✔️ Rota para listar dados para um dashboard
 
 ### Recursos técnicos:  
-✔️ Documentação com OpenAPI (swagger)  
-✔️ Dockerização com Docker  
+✔️ Documentação com OpenAPI (swagger) na rota /api-docs
+✔️ Conteinerização com Docker  
 ✔️ Testes unitários com Jest  
 ✔️ Esteira de CI/CD realizando deploy automático para uma função lambda na AWS  
 
