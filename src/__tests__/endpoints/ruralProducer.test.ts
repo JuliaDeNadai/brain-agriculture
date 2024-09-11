@@ -11,7 +11,7 @@ describe('GET /ruralProducer/:cpf_cnpj', () => {
     
     mockGetRuralProducer = jest.spyOn(RuralProducerController.prototype, 'get')
       .mockResolvedValue({
-        cpf_cpnj: "string",
+        cpf_cnpj: "string",
         producerName: "string",
         farmName: "string",
         city: "string",

@@ -1,5 +1,7 @@
+import { IFarm } from "./farm"
+
 export interface IRuralProducerCreate {
-    cpf_cpnj: string,
+    cpf_cnpj: string,
     producerName: string,
     farmName: string,
     city: string,
@@ -11,8 +13,10 @@ export interface IRuralProducerCreate {
 }
 
 export interface IRuralProducerGet {
-    cpf_cpnj: string,
+    producerId: number,
+    cpf_cnpj: string,
     producerName: string,
+    farmId: number,
     farmName: string,
     city: string,
     state: string,
@@ -21,3 +25,11 @@ export interface IRuralProducerGet {
     vegetableArea: number,
     plantedCrops: string[]
 }
+
+export interface IRuralProducer {
+    id: number,
+    cpf_cnpj: string,
+    name: string,
+    farm: IFarm,
+}
+

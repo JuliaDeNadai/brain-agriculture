@@ -2,7 +2,7 @@ import { body } from 'express-validator';
 
 export function ruralProducerMiddleware(){
   return [
-    body('cpf_cpnj')
+    body('cpf_cnpj')
       .isLength({ min: 11 })
       .withMessage('CPF/CNPJ must be at least 11 chars long')
       .isLength({ max: 14 })

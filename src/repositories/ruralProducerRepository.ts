@@ -6,7 +6,7 @@ import { IDashboardData } from "@Models/dashboard";
 class RuralProducerRepository {
     pool: Pool = PostgresSingleton.getInstance();
 
-    async create({cpf_cpnj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops}: IRuralProducerCreate): Promise<IRuralProducerGet | null>{
+    async create({cpf_cnpj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops}: IRuralProducerCreate): Promise<Omit<IRuralProducerGet, 'producerId' | 'farmId'> | null>{
       
       const result = await this.pool.query(`INSERT INTO "Producer"
             ( 
@@ -20,7 +20,7 @@ class RuralProducerRepository {
               vegetable_area,
               planted_cropd
             )VALUES(
-              '${cpf_cpnj}',
+              '${cpf_cnpj}',
               '${producerName}',
               '${farmName}',
               '${city}',
@@ -33,12 +33,26 @@ class RuralProducerRepository {
 
       if(result.rowCount === 0) return null
       
-      return { cpf_cpnj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops }
+      return { cpf_cnpj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops }
   }
 
   async getByCpfOrCnpj(cpf_cnpj: string): Promise<IRuralProducerGet | null> {
      
-    let result = await this.pool.query(`SELECT * FROM "Producer" where cpf_cnpj = '${cpf_cnpj}'`)
+    let result = await this.pool.query(`
+      SELECT 
+        p.id as "producerId",
+        p.cpf_cnpj cpf_cnpj,
+        p.name as "producerName",
+        f.id as "farmId",
+        f."name" as "farmName",
+        f.city city,
+        f.state state,
+        f.total_area,
+        f.arable_area,
+        f.vegetable_area
+      FROM "Producer" p 
+      JOIN "Farm" f on f.producer = p.id  
+      WHERE cpf_cnpj = '${cpf_cnpj}'`)
 
     if(result.rowCount === 0 ) return null
 
@@ -47,59 +61,21 @@ class RuralProducerRepository {
 
   async getAll(): Promise<IRuralProducerGet[]> {
      
-    let result = await this.pool.query(`SELECT * FROM "Producer"`)
+    let result = await this.pool.query(`
+      SELECT 
+        p.cpf_cnpj cpf_cnpj,
+        p.name as "producerName",
+        f."name" as "farmName",
+        f.city city,
+        f.state state,
+        f.total_area,
+        f.arable_area,
+        f.vegetable_area
+      FROM "Producer" p 
+      JOIN "Farm" f on f.producer = p.id `)
 
     return result.rows
   }
-
-  async deleteByCpfOrCnpj(cpf_cnpj: string): Promise<boolean>{
-     
-    let result = await this.pool.query(`DELETE FROM "Producer" where cpf_cnpj = '${cpf_cnpj}'`)
-
-    if(result.rowCount === 0) return false
-    
-    return true
-  }
-
-  async getTotals(){
-    let result = await this.pool.query(`
-      select 
-        count(*) total_farms,
-        SUM(total_area) total_area,
-        SUM(vegetable_area) planted_area,
-        SUM(vegetable_area) vegetable_area,
-        SUM(arable_area) arable_area
-      from "Producer"
-      `)
-
-    return result.rows[0]
-  }
-
-  async getTotalFarmsGroupedByState(){
-    let result = await this.pool.query(`
-      select 
-        state,
-        count(*) total_farms
-      from "Producer"
-      group by state
-      `)
-
-    return result.rows
-  }
-
-  async getTotalFarmsGroupedByCrops(){
-
-  }
-  
-
-  async getDashboardData(): Promise<IDashboardData> {
-    const { total_farms, total_area, planted_area, arable_area, vegetable_area } = await this.getTotals()
-    const totalFarmsByState = await this.getTotalFarmsGroupedByState()
-    //const totalFarmsGroupedByCrops = await this.getTotalFarmsGroupedByCrops()
-
-    return { total_farms, total_area, planted_area, arable_area, vegetable_area, totalFarmsByState }
-  }
-
 }
 
 export {RuralProducerRepository}

@@ -14,7 +14,7 @@ services:
     command: npm run dev
     env_file:
       - .env
-  
+
   postgres:
     image: postgres
     ports:

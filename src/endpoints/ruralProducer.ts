@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import { RuralProducerController } from '../controllers/ruralProducerController';
-import { IRuralProducerCreate, IRuralProducerGet } from '../models/ruralProducer';
+import { IRuralProducer, IRuralProducerCreate, IRuralProducerGet } from '../models/ruralProducer';
 import { ruralProducerMiddleware } from '../middlewares/ruralProducerMiddleware';
 import { validationResult } from 'express-validator';
 
@@ -15,7 +15,7 @@ ruralProducerEnpoint.route('/')
             return response.status(400).json({ errors: errors.array() });
         
         const {
-            cpf_cpnj,
+            cpf_cnpj,
             producerName,
             farmName,
             city,
@@ -27,8 +27,8 @@ ruralProducerEnpoint.route('/')
         } = request.body as IRuralProducerCreate
 
 
-        let producer: IRuralProducerGet | null = await controller.create({
-            cpf_cpnj,
+        let producer: Omit<IRuralProducer, 'id'> | null = await controller.create({
+            cpf_cnpj,
             producerName,
             farmName,
             city,
