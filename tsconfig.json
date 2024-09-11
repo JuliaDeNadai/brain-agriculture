@@ -17,7 +17,7 @@
     },
     "resolveJsonModule": true,
   },
-  "include": ["./swagger-output.json", "src/**/*"],
+  "include": ["./swagger-output.json", "src/**/*", "handler.ts"],
   "exclude": [
     "node_modules"
   ],
