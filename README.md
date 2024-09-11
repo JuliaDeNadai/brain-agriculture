@@ -25,8 +25,8 @@ A documentação com swagger está disponível em: [Documentação com Swagger](
 ✔️ Documentação com OpenAPI (swagger) na rota /api-docs
 ✔️ Conteinerização com Docker  
 ✔️ Testes unitários com Jest  
-✔️ Esteira de CI/CD realizando deploy automático para uma função lambda na AWS  
-
+✔️ Esteira de CI realizando testes automatizados
+ 
 ### Melhorias futuras 
 📌 Realizar migrations de forma automática ao rodar o docker  
 📌 Deploy do banco de dados na nuvem  

@@ -1,16 +1,11 @@
-import { Context, APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { createServer, proxy } from 'aws-serverless-express';
-
+import serverless from 'serverless-http'; // Converte o app Express para Lambda handler
+import { APIGatewayProxyEvent, Context, APIGatewayProxyResult } from 'aws-lambda';
 import {app} from "./src/api/api"
 
-const server = createServer(app);
+// Converte a aplicação Express para funcionar no ambiente Lambda
+const handler = serverless(app);
 
-export const handler = (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> => {
-  return new Promise((resolve, reject) => {
-    try {
-      proxy(server, event, context);
-    } catch (error) {
-      reject(error);
-    }
-  });
+// Função exportada para a Lambda
+export const lambdaHandler = async (event: APIGatewayProxyEvent, context: Context) => {
+  return handler(event, context);
 };

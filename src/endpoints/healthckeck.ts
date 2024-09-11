@@ -4,7 +4,7 @@ const healthCheckEnpoint = express.Router()
 
 healthCheckEnpoint.route('/')
     .get((req: express.Request, res: express.Response) => {
-        res.send('ok');
+        res.send('Hello from brainAgriculture');
     });
 
 export {healthCheckEnpoint}
