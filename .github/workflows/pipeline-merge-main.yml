@@ -20,7 +20,8 @@ jobs:
         run: npm run build
       - name: Zip Files
         run: |
-          zip -r deployment.zip ./dist
+          cd dist
+          zip -r ../deployment.zip .
       - name: Send to Lambda
         uses: appleboy/lambda-action@v0.1.9
         with:
