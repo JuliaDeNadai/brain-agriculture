@@ -1,8 +1,8 @@
-import { RuralProducerRepository } from "../repositories/ruralProducerRepository";
+import { FarmRepository } from "../repositories/farmRepository";
 
 class DashboardController {
 
-  repository: RuralProducerRepository = new RuralProducerRepository()
+  repository: FarmRepository = new FarmRepository()
 
   async getData(){
     return await this.repository.getDashboardData()

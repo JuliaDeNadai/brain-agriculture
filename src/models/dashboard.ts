@@ -4,5 +4,6 @@ export interface IDashboardData {
   planted_area: number,
   arable_area: number,
   vegetable_area: number,
-  totalFarmsByState?: string[]
+  totalFarmsByState?: string[],
+  totalFarmsGroupedByCrops: any
 }

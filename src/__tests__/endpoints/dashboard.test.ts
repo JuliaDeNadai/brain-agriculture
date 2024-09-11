@@ -15,7 +15,9 @@ describe('GET /dashboard', () => {
         total_area: 12,
         planted_area: 8,
         arable_area: 2,
-        vegetable_area: 8
+        vegetable_area: 8,
+        totalFarmsByState: [],
+        totalFarmsGroupedByCrops: []
       });
   });
 
@@ -38,6 +40,8 @@ describe('GET /dashboard', () => {
     expect(response.body).toHaveProperty('planted_area');
     expect(response.body).toHaveProperty('arable_area');
     expect(response.body).toHaveProperty('vegetable_area');
+    expect(response.body).toHaveProperty('totalFarmsByState');
+    expect(response.body).toHaveProperty('totalFarmsGroupedByCrops');
   });
 
 });
