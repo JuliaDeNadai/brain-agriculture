@@ -8,9 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Versão do Node.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile TypeScript
+        run: npm run build
       - name: Zip Files
         run: |
-          zip -r deployment.zip .
+          zip -r deployment.zip ./dist
       - name: Send to Lambda
         uses: appleboy/lambda-action@v0.1.9
         with:
