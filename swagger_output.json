@@ -7,8 +7,12 @@
   },
   "servers": [
     {
+      "url": "https://trmbsykipiai4zg4plt4stqqf40igqlx.lambda-url.sa-east-1.on.aws",
+      "description": "Production"
+    },
+    {
       "url": "http://localhost:3000",
-      "description": ""
+      "description": "local"
     }
   ],
   "paths": {
@@ -50,7 +54,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "cpf_cpnj": {
+                  "cpf_cnpj": {
                     "example": "any"
                   },
                   "producerName": {
