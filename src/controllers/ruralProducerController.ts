@@ -59,10 +59,11 @@ class RuralProducerController {
         if(ruralProducer === null) return null
 
         let entity = {
+            id: ruralProducer.producerId,
             name: ruralProducer.producerName,
             cpf_cnpj: ruralProducer.cpf_cnpj,
             farm: {
-                id: 1,
+                id: ruralProducer.farmId,
                 name: ruralProducer.farmName,
                 city: ruralProducer.city,
                 state: ruralProducer.state,

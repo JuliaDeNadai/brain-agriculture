@@ -1,6 +1,6 @@
 # 🚀 Brain Agriculture
 
-![Static Badge](https://img.shields.io/badge/coverage-46-yellow?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/coverage-30-yellow?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/Node-16.20.2-yellow?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/production-offline-red?style=for-the-badge)
 

@@ -11,15 +11,18 @@ describe('GET /ruralProducer/:cpf_cnpj', () => {
     
     mockGetRuralProducer = jest.spyOn(RuralProducerController.prototype, 'get')
       .mockResolvedValue({
-        cpf_cnpj: "string",
-        producerName: "string",
-        farmName: "string",
-        city: "string",
-        state: "string",
-        totalArea: 12,
-        arableArea: 12,
-        vegetableArea: 12,
-        plantedCrops: ["string"]
+        id: 1,
+        name: "Mocked name",
+        cpf_cnpj: "99999999999",
+        farm: {
+            id: 1,
+            name: "mocked farm name",
+            city: "mocked city",
+            state: "mocked state",
+            totalArea: 10.0,
+            arableArea: 8.0,
+            vegetableArea: 2.0
+        }
       });
   });
 
@@ -37,15 +40,9 @@ describe('GET /ruralProducer/:cpf_cnpj', () => {
   it('should return rura producer data with all attributes', async () => {
     const response = await request(app).get('/api/ruralProducer/string');
 
-    expect(response.body).toHaveProperty('cpf_cpnj');
-    expect(response.body).toHaveProperty('producerName');
-    expect(response.body).toHaveProperty('farmName');
-    expect(response.body).toHaveProperty('city');
-    expect(response.body).toHaveProperty('state');
-    expect(response.body).toHaveProperty('totalArea');
-    expect(response.body).toHaveProperty('arableArea');
-    expect(response.body).toHaveProperty('vegetableArea');
-    expect(response.body).toHaveProperty('plantedCrops');
+    expect(response.body).toHaveProperty('cpf_cnpj');
+    expect(response.body).toHaveProperty('name');
+    expect(response.body).toHaveProperty('farm');
   });
 
 });
