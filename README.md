@@ -7,10 +7,6 @@
 
 Sistema simples manipulação de dados de produtores rurais.
 
-A API está rodando em uma Função lambda na AWS acessível via [url lambda function](https://fpfqilbrpokhz2rlhhvvzrxwme0udhsi.lambda-url.sa-east-1.on.aws/) 
-
-A documentação com swagger está disponível em: [Documentação com Swagger](https://fpfqilbrpokhz2rlhhvvzrxwme0udhsi.lambda-url.sa-east-1.on.aws/api-docs)
-
 ### Modelagem do Banco de Dados
 
 ![alt text](database.png)
@@ -25,7 +21,8 @@ A documentação com swagger está disponível em: [Documentação com Swagger](
 ✔️ Documentação com OpenAPI (swagger) na rota /api-docs
 ✔️ Conteinerização com Docker  
 ✔️ Testes unitários com Jest  
-✔️ Esteira de CI/CD realizando deploy automático para uma função lambda na AWS  
+✔️ Esteira de CI realizando testes automatizados
+⚠️ Esteira de deploy automático para uma função lambda na AWS (implementado parcialmente, esteira funcionando)
 
 ### Melhorias futuras 
 📌 Realizar migrations de forma automática ao rodar o docker  
