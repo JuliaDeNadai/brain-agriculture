@@ -1,9 +1,11 @@
 import { Pool } from 'pg';
+import { injectable } from 'tsyringe';
 
+@injectable()
 class PostgresSingleton {
   private static instance: Pool | null;
 
-  private constructor() {}
+  constructor() {}
 
   public static getInstance(): Pool {
     if (!PostgresSingleton.instance) {

@@ -1,8 +1,9 @@
 import { Pool } from "pg";
 import PostgresSingleton from "../database/postgresSingleton";
 import { IRuralProducerCreate } from "@Models/ruralProducer";
+import { IGetByName } from "./interfaces/iDatabaseOperations";
 
-class CropRepository {
+class CropRepository implements IGetByName<string> {
   pool: Pool = PostgresSingleton.getInstance();
 
   async getByName(name: string){

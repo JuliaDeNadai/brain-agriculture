@@ -1,9 +1,10 @@
 import { Pool } from "pg";
 import PostgresSingleton from "../database/postgresSingleton";
+import { iFarmCropInterface } from "./interfaces/iFramCropInterface";
 
-class FarmCropRepository {
+class FarmCropRepository implements iFarmCropInterface {
+  
   pool: Pool = PostgresSingleton.getInstance();
-
   async create(crops: Map<number, number>[]){
     // [farmId, cropId]
 
@@ -20,7 +21,7 @@ class FarmCropRepository {
     return { }
   }
 
-  async deleteByFarm(farmId: number){
+  async deleteByFarm(farmId: number): Promise<Boolean>{
     let result = await this.pool.query(`DELETE FROM "Farm_Crop" where farm = '${farmId}'`)
 
     if(result.rowCount === 0) return false

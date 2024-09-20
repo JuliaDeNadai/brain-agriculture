@@ -6,13 +6,17 @@ import { validateCNPJ } from "../utils/validateCNPJ";
 import { ProducerRepository } from "../repositories/producerRepository";
 import { FarmRepository } from "../repositories/farmRepository";
 import { FarmCropRepository } from "../repositories/farmCropRepository";
+import { CropRepository } from "@Repositories/cropRepository";
+import { container } from "tsyringe";
+import { IRuralProducerInterface } from "./interfaces/iRuralProducerInterface";
 
-class RuralProducerController {
+class RuralProducerController implements IRuralProducerInterface {
 
-    ruralProducerRepository: RuralProducerRepository = new RuralProducerRepository()
-    producerRepository: ProducerRepository = new ProducerRepository()
-    farmRepository: FarmRepository = new FarmRepository()
-    farmCropRepository: FarmCropRepository = new FarmCropRepository()
+    ruralProducerRepository: RuralProducerRepository = container.resolve(RuralProducerRepository)
+    producerRepository: ProducerRepository = container.resolve(ProducerRepository)
+    farmRepository: FarmRepository = container.resolve(FarmRepository)
+    farmCropRepository: FarmCropRepository = container.resolve(FarmCropRepository)
+    cropRepository: CropRepository = container.resolve(CropRepository);
 
     async create({ cpf_cnpj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops }: IRuralProducerCreate): Promise<Omit<IRuralProducer, 'id'> | null>{
 

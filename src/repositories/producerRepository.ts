@@ -1,8 +1,9 @@
 import { Pool } from "pg";
 import PostgresSingleton from "../database/postgresSingleton";
 import { Producer } from "../models/producer";
+import { IDelete } from "./interfaces/iDatabaseOperations";
 
-class ProducerRepository {
+class ProducerRepository implements IDelete  {
   pool: Pool = PostgresSingleton.getInstance();
 
   async create({cpf_cnpj, name}: Omit<Producer, 'id'>): Promise<Producer | null>{

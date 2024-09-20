@@ -3,10 +3,11 @@ import { RuralProducerController } from '../controllers/ruralProducerController'
 import { IRuralProducer, IRuralProducerCreate, IRuralProducerGet } from '../models/ruralProducer';
 import { ruralProducerMiddleware } from '../middlewares/ruralProducerMiddleware';
 import { validationResult } from 'express-validator';
+import { container } from 'tsyringe';
 
 const ruralProducerEnpoint = express.Router()
 
-const controller = new RuralProducerController()
+const controller = container.resolve(RuralProducerController)
 
 ruralProducerEnpoint.route('/')
     .post(ruralProducerMiddleware(), async (request: Request, response: Response) =>  {

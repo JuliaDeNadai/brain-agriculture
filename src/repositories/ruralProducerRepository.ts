@@ -1,9 +1,9 @@
 import { Pool } from "pg";
 import PostgresSingleton from "../database/postgresSingleton";
 import { IRuralProducerCreate, IRuralProducerGet } from "../models/ruralProducer";
-import { IDashboardData } from "@Models/dashboard";
+import { IGetAll } from "./interfaces/iDatabaseOperations";
 
-class RuralProducerRepository {
+class RuralProducerRepository implements IGetAll<IRuralProducerGet> {
     pool: Pool = PostgresSingleton.getInstance();
 
     async create({cpf_cnpj, producerName, farmName, city, state, totalArea, arableArea, vegetableArea, plantedCrops}: IRuralProducerCreate): Promise<Omit<IRuralProducerGet, 'producerId' | 'farmId'> | null>{

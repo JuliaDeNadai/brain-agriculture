@@ -2,8 +2,20 @@ import { Pool } from "pg";
 import PostgresSingleton from "../database/postgresSingleton";
 import { IFarm, IFarmCreate } from "../models/farm";
 import { IDashboardData } from "../models/dashboard";
+import { injectable } from "tsyringe";
+import { ICreate, IDelete } from "./interfaces/iDatabaseOperations";
+import { IFarmInterface } from "./interfaces/iFarmInterface";
 
-class FarmRepository {
+interface IResultRows {
+  total_farms: number 
+  total_area: number 
+  planted_area: number 
+  arable_area: number 
+  vegetable_area: number
+}
+
+@injectable()
+class FarmRepository implements IDelete, IFarmInterface {
   pool: Pool = PostgresSingleton.getInstance();
 
   async create({name, city, state, totalArea, arableArea, vegetableArea, producerId}: Omit<IFarmCreate, 'id'>): Promise<IFarm | null>{
@@ -46,14 +58,22 @@ class FarmRepository {
     let result = await this.pool.query(`
       select 
         count(*) total_farms,
-        SUM(total_area) total_area,
-        SUM(vegetable_area) planted_area,
-        SUM(vegetable_area) vegetable_area,
-        SUM(arable_area) arable_area
+        COALESCE(SUM(total_area), 0) AS total_area,
+        COALESCE(SUM(vegetable_area), 0) AS planted_area,
+        COALESCE(SUM(vegetable_area), 0) AS vegetable_area,
+        COALESCE(SUM(arable_area), 0) AS arable_area
       from "Farm"
       `)
-
-    return result.rows[0]
+      
+    let {
+      total_farms = 0, 
+      total_area = 0, 
+      planted_area = 0, 
+      arable_area = 0, 
+      vegetable_area = 0 
+    }: IResultRows = result.rows[0]
+    
+    return {total_farms, total_area, planted_area, arable_area, vegetable_area}
   }
 
   async getTotalFarmsGroupedByState(){
@@ -65,7 +85,7 @@ class FarmRepository {
       group by state
       `)
 
-    return result.rows
+    return result.rows || []
   }
 
   async getTotalFarmsGroupedByCrops(){
@@ -79,7 +99,7 @@ class FarmRepository {
         group by c.id 
       `)
 
-    return result.rows
+    return result.rows || []
   }
   
 
